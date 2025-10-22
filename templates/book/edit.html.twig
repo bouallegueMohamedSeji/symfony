@@ -1,0 +1,8 @@
+<h1>Update Book</h1>
+<p>Ref: {{ book.id }}</p>
+
+{{ form_start(form) }}
+    {{ form_widget(form) }}
+{{ form_end(form) }}
+
+<a href="{{ path('book_list') }}">back to list</a>

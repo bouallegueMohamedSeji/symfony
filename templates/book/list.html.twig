@@ -1,0 +1,41 @@
+<h1>List of Books</h1>
+
+{% if books is empty %}
+    <p>No Books found</p> 
+{% else %}
+    <table border="1" style="width:100%; border-collapse: collapse;">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Publication date</th>
+                <th>Published</th>
+                <th>Category</th>
+                <th>Author</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for book in books %}
+                <tr>
+                    <td>{{ book.title }}</td>
+                    <td>{{ book.publicationDate|date('Y-m-d') }}</td>
+                    <td>{{ book.published ? '1' : '0' }}</td>
+                    <td>{{ book.category }}</td>
+                    <td>{{ book.author.authorName }}</td>
+                    <td>
+                        <a href="{{ path('book_edit', {'id': book.id}) }}">edit</a>
+                        <a href="{{ path('book_delete', {'id': book.id}) }}" onclick="return confirm('Supprimer ce livre ?');">delete</a>
+                        <a href="{{ path('book_show', {'id': book.id}) }}">show</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endif %}
+
+<hr>
+<p>Number of published books : <strong>{{ publishedCount }}</strong></p>
+<p>Number of unpublished books : <strong>{{ unpublishedCount }}</strong></p>
+<hr>
+
+<a href="{{ path('book_new') }}">Create new</a>

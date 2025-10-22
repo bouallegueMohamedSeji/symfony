@@ -1,0 +1,23 @@
+<h1>List authors</h1>
+
+{% if authors is not empty %}
+    <table border="1">
+        <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Actions</th>
+        </tr>
+        {% for author in authors %}
+            <tr>
+                <td>{{ author.authorName }}</td>
+                <td>{{ author.email }}</td>
+                <td>
+    <a href="{{ path('author_update', {'id': author.id}) }}">edit</a>
+    <a href="{{ path('author_delete', {'id': author.id}) }}">delete</a>
+</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% else %}
+    <p>No authors found.</p>
+{% endif %}
